@@ -1,0 +1,8 @@
+nmap -p 80 -sV  returns what service and version is running on port 80
+nmap -sV  returns what service and version is running on most common ports
+nmap -sV -sC returns what service and version is running on most common ports, as well as performs the default set of script scans
+
+
+gobuster - used to scan website directories for interesting pages and directories
+git clone https://github.com/danielmiessler/SecLists.git  To grab a curated wordlist to scan for
+gobuster dir --url http://IP_Addres/ --wordlist /directory-list-2.3-small.txt
