@@ -5,7 +5,8 @@ nmap -sV -sC #returns what service and version is running on most common ports, 
 
 gobuster - used to scan website directories for interesting pages and directories
 git clone https://github.com/danielmiessler/SecLists.git  #To grab a curated wordlist to scan for
-gobuster dir --url http://IP_Addres/ --wordlist /directory-list-2.3-small.txt
+By default, Wordlists on Kali are located in the /usr/share/wordlists directory
+gobuster dir --url http://IP_Addres/ -x php,html --wordlist /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt
 
 
 php and sql authentication webpage, depending on the code used, could be susceptible to SQL injection attacks.
@@ -18,3 +19,5 @@ show databases;  #List databses
 use DB_name;  #Select DB to connect to
 show tables;  #Show tables of selected DB
 select * from table_name;  #Returns data from the specific table
+
+Wappalyzer is a browser extension that can show you the make up of a website and the technology it uses (scripts, Apache http, php, jquery, etc).
