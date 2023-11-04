@@ -1,3 +1,4 @@
+nmap -p- #scans all ports, not just common ones
 nmap -p 80 -sV  #returns what service and version is running on port 80
 nmap -sV  #returns what service and version is running on most common ports
 nmap -sV -sC #returns what service and version is running on most common ports, as well as performs the default set of script scans
@@ -21,3 +22,6 @@ show tables;  #Show tables of selected DB
 select * from table_name;  #Returns data from the specific table
 
 Wappalyzer is a browser extension that can show you the make up of a website and the technology it uses (scripts, Apache http, php, jquery, etc).
+
+sudo nano /etc/hosts  #to edit hosts file
+echo "10.129.128.223 domain.com" | sudo tee -a /etc/hosts  #to add to hosts file directly
